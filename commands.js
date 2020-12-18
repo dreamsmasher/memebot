@@ -15,7 +15,7 @@ const handleMsg = (msg) => {
                 .catch(err => msg.channel.send('Error making your meme: ', err));
             break;
         case 'list':
-            msg.channel.send('valid templates:\n' + [...names.keys()].slice(0, 50).join('\n'));
+            msg.channel.send('valid templates:\n' + [...names.keys()].slice(0, 50).map(name => { let boxcount = names.name[1]; return `${name}, (${boxcount})` }).join('\n'));
             break;
         case 'help':
             let helpStr = `
