@@ -44,7 +44,7 @@ let mkMeme = (name, ...args) => {
     let id = names.get(name);
     return new Promise((res, rej) => {
         if (id === undefined) {
-            rej(new Error("Invalid name specified."))
+            rej("Invalid name specified.")
         }
         res(imgflip.meme(id, {
             captions: args,
