@@ -1,5 +1,6 @@
 
-const { mkMeme, sendImg } = require('./imgflip');
+const { mkMeme, sendImg, names } = require('./imgflip');
+const prefix = '!';
 
 const handleMsg = (msg) => {
     if (!msg.content.startsWith(prefix) || msg.author.bot) return;
@@ -8,15 +9,23 @@ const handleMsg = (msg) => {
 
     switch (cmd) {
         case 'meme':
-            mkMeme.apply(args)
+            console.log(args);
+            mkMeme.apply(null, args)
                 .then(url => sendImg(msg, url))
-                .catch(err => msg.send('Error in communicating with imgflip API', err));
+                .catch(err => msg.channel.send('Error making your meme: ', err));
             break;
         case 'list':
-            msg.send('valid templates:\n', names.keys().slice(0, 50).join('\n'));
+            msg.channel.send('valid templates:\n' + [...names.keys()].slice(0, 50).join('\n'));
             break;
+        case 'help':
+            let helpStr = `
+                Commands:
+                    meme [description] [top text] [bottom text] - make a meme
+                    list - list top 50 memes
+            `
+            msg.channel.send(helpStr);
         default:
-            msg.send('invalid command, you donkey');
+            msg.channel.send('invalid command, you donkey');
             break;
     }
 }

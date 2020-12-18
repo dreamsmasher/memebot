@@ -15,19 +15,23 @@ const imgflip = new Imgflip.default(ACCT_INFO);
 
 let names = new Map();
 
-let updateNames = () => {
-    imgflip.memes()
+let updateNames = async () => {
+    return imgflip.memes()
         .then(resp => {
             resp.forEach(obj => {
                 let { id, name } = obj;
                 names.set(name.toLowerCase(), id);
-            })
+            });
+            console.log("imgFlip db loaded.")
+
         }).catch(err => console.log('Error updating memes...'));
+        
 };
 
 (async () => {
     try {
-        await updateNames;
+        await updateNames();
+        console.log('names loaded');
         setTimeout(updateNames, 86400000);
     } catch (err) {
         console.log(err);
@@ -36,10 +40,16 @@ let updateNames = () => {
 
 
 
-let mkMeme = (id, ...args) => {
-    return imgflip.meme(id, {
-        captions: args,
-    });
+let mkMeme = (name, ...args) => {
+    let id = names.get(name);
+    return new Promise((res, rej) => {
+        if (id === undefined) {
+            rej(new Error("Invalid name specified."))
+        }
+        res(imgflip.meme(id, {
+            captions: args,
+        }));
+    })
 };
 
 let sendImg = (message, url) => {
@@ -51,4 +61,5 @@ let sendImg = (message, url) => {
 module.exports = {
     mkMeme,
     sendImg,
+    names,
 }
