@@ -1,6 +1,5 @@
 const process = require('process');
 const Discord = require('discord.js');
-const config = require('./config/config')
 const client = new Discord.Client();
 let TOKEN, PERMISSIONS;
 
