@@ -5,7 +5,12 @@ const helpStr = `
 Commands:
     !meme [description] [top text] [bottom text] - make a meme
     !list - list top 50 memes
-    !list2 - list top 50 - 100 memes`;
+    !list2 - list top 50 - 100 memes
+
+Syntax:
+    !meme {meme name} <caption1> <caption2>...
+    the braces are mandatory! (parser is just regex pls no bully)`;
+
 
 // let inBracks = /(?<cmd>!(meme|list|help)) ?{(?<name>.*)} ?(<(?<args>.*)>)*/g;
 let brackRegex = /(?<cmd>!(meme|list|help)) ?({(?<name>.*)})? ?((?<args><.*>)*)?/g;
