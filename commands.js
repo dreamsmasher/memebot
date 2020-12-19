@@ -34,7 +34,7 @@ const handleMsg = (msg) => {
                 msg.channel.send('valid templates:\n' + [...names.keys()].slice(0, 50).join('\n'));
                 break;
             case '!list2':
-                msg.channel.send('valid templates:\n' + [...names.keys()].slice(50, 100).join('\n'));
+                msg.channel.send('valid templates:\n' + [...names.keys()].slice(50, 101).join('\n'));
                 break;
             case '!help':
                 msg.channel.send(helpStr);
