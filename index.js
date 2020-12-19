@@ -16,7 +16,6 @@ if (process.env.DEV === 'true') {
 const { handleMsg } = require('./commands');
 // const {DISCORD_INFO, ACCT_INFO} = require('./config/config.js');
 // const {token, permissions, prefix} = DISCORD_INFO;
-
 client.login(TOKEN);
 
 client.once('ready', () => console.log('logged in'));
