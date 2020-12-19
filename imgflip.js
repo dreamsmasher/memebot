@@ -50,14 +50,7 @@ let mkMeme = (name, args) => {
     })
 };
 
-let sendImg = (message, url) => {
-    message.channel.send('meme', {
-        files: [url],
-    })
-};
-
 module.exports = {
     mkMeme,
-    sendImg,
     names,
 }
