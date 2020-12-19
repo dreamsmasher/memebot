@@ -3,8 +3,12 @@ const { mkMeme, sendImg, names } = require('./imgflip');
 const prefix = '!';
 const helpStr = `
 Commands:
-    meme [description] [top text] [bottom text] - make a meme
-    list - list top 50 memes`;
+    !meme [description] [top text] [bottom text] - make a meme
+    !list - list top 50 memes
+
+Syntax:
+    !meme {meme name} <caption1> <caption2>...    
+    the braces are mandatory! (parser is just regex pls no bully)`;
 
 // let inBracks = /(?<cmd>!(meme|list|help)) ?{(?<name>.*)} ?(<(?<args>.*)>)*/g;
 let brackRegex = /(?<cmd>!(meme|list|help)) ?({(?<name>.*)})? ?((?<args><.*>)*)?/g;
@@ -24,9 +28,9 @@ const handleMsg = (msg) => {
                 if (name) {
                     mkMeme(name.toLowerCase(), matchArgs(args))
                         .then(url => sendImg(msg, url))
-                        .catch(err => msg.channel.send('Error making your meme: ', err));
+                        .catch(err => msg.channel.send('error making your meme: ', err));
                 } else {
-                    msg.channel.send('Error: no meme specified. Type `list` to see what\'s available.');
+                    msg.channel.send('error: no meme specified. Type `list` to see what\'s available.');
                 }
                 break;
             case '!list':
@@ -40,7 +44,7 @@ const handleMsg = (msg) => {
                 break;
         }
     } catch (err) {
-        msg.channel.send('Unexpected error, sorry sorry');
+        msg.channel.send('unexpected error, sorry sorry');
     }
 }
 
