@@ -20,11 +20,11 @@ let matchArgs = (args) => [...args.matchAll(argsRegex)].map(a => a?.groups?.argv
 const handleMsg = (msg) => {
     try {
         if (!msg.content.startsWith(prefix) || msg.author.bot) return;
-        let {cmd, name, args} = matchCmd(msg);
-        
+        let { cmd, name, args } = matchCmd(msg);
+
         switch (cmd) {
             case '!meme':
-                console.log('meme request: ',name, args); 
+                console.log('meme request: ', name, args);
                 if (name) {
                     mkMeme(name.toLowerCase(), matchArgs(args))
                         .then(url => sendImg(msg, url))
@@ -34,7 +34,7 @@ const handleMsg = (msg) => {
                 }
                 break;
             case '!list':
-                msg.channel.send('valid templates:\n' + [...names.keys()].slice(0, 50).join('\n'));
+                msg.channel.send('valid templates:\n' + [...names.keys()].slice(0, 50).map(name => { var boxes = names.get(name)[1]; return `**${name} [${boxes}]**` }).join('\n'));
                 break;
             case '!help':
                 msg.channel.send(helpStr);
