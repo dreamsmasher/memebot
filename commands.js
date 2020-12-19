@@ -3,8 +3,9 @@ const { mkMeme, sendImg, names } = require('./imgflip');
 const prefix = '!';
 const helpStr = `
 Commands:
-    meme [description] [top text] [bottom text] - make a meme
-    list - list top 50 memes`;
+    !meme [description] [top text] [bottom text] - make a meme
+    !list - list top 50 memes
+    !list2 - list top 50 - 100 memes`;
 
 // let inBracks = /(?<cmd>!(meme|list|help)) ?{(?<name>.*)} ?(<(?<args>.*)>)*/g;
 let brackRegex = /(?<cmd>!(meme|list|help)) ?({(?<name>.*)})? ?((?<args><.*>)*)?/g;
