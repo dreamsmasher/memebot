@@ -19,13 +19,13 @@ let updateNames = async () => {
     return imgflip.memes()
         .then(resp => {
             resp.forEach(obj => {
-                let { id, name } = obj;
-                names.set(name.toLowerCase(), id);
+                let { id, name, box_count } = obj;
+                names.set(name.toLowerCase(), [id, box_count]);
             });
             console.log("imgFlip db loaded.")
 
         }).catch(err => console.log('Error updating memes...'));
-        
+
 };
 
 (async () => {
@@ -41,7 +41,7 @@ let updateNames = async () => {
 
 
 let mkMeme = (name, args) => {
-    let id = names.get(name);
+    let id = names.get(name)[0];
     return new Promise((res, rej) => {
         if (id === undefined) {
             rej("Invalid name specified.")
