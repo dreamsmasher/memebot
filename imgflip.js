@@ -40,7 +40,7 @@ let updateNames = async () => {
 
 
 
-let mkMeme = (name, ...args) => {
+let mkMeme = (name, args) => {
     let id = names.get(name);
     return new Promise((res, rej) => {
         if (id === undefined) {
