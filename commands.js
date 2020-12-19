@@ -13,7 +13,7 @@ Syntax:
 
 
 // let inBracks = /(?<cmd>!(meme|list|help)) ?{(?<name>.*)} ?(<(?<args>.*)>)*/g;
-let brackRegex = /(?<cmd>!(meme|list|help)) ?({(?<name>.*)})? ?((?<args><.*>)*)?/g;
+let brackRegex = /(?<cmd>!(meme|list2?|help)) ?({(?<name>.*)})? ?((?<args><.*>)*)?/g;
 let argsRegex = /(<(?<argv>[^<>]*)>)+/g;
 
 let matchCmd = (msg) => [...msg.content.matchAll(brackRegex)][0]?.groups;
