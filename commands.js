@@ -32,7 +32,7 @@ const handleMsg = (msg) => {
                         .then(url => sendImg(msg, url))
                         .catch(err => msg.channel.send('Error making your meme: ', err));
                 } else {
-                    msg.channel.send('Error: no meme specified. Type `list` to see what\'s available.');
+                    msg.channel.send('error: no meme specified. Type `list` to see what\'s available.');
                 }
                 break;
             case '!list':
@@ -49,7 +49,7 @@ const handleMsg = (msg) => {
                 break;
         }
     } catch (err) {
-        msg.channel.send('Unexpected error, sorry sorry');
+        msg.channel.send('unexpected error, sorry sorry');
     }
 }
 
