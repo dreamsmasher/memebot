@@ -13,7 +13,8 @@ Syntax:
 
 
 let mkRndPrf = () => {
-    let words = ['meme'
+    let words = 
+        ['meme'
         , 'beep'
         , 'boop'
         , 'bloop'
@@ -40,7 +41,7 @@ let mkRndPrf = () => {
         , 'fast n furious'
         , 'nnneeeeooooom'
         , 'https://www.github.com/dreamsmasher/memebot'
-    ];
+        ];
     return words[~~(Math.random() * words.length)];
 };
 const NONAME = 'error: no meme specified. Type `list` to see what\'s available.';
