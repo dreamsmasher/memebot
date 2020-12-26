@@ -10,6 +10,10 @@ let parseRemind = function (timeStr) {
     day: 8640000,
   }
 
+  //10 min || at 3:00
+
+  //allow datetime format
+
   let len = (Number(matched.len ?? '0') * lens[matched.unit]) ?? 0;
   return len;
 

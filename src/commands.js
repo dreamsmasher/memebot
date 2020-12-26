@@ -2,6 +2,7 @@
 const { mkMeme, names } = require('./imgflip');
 const ro = require('./rodata');
 const { parseRemind } = require('./remindme');
+const { evalAsm } = require('./asm');
 
 
 let matchCmd = (msg) => [...msg.content.matchAll(ro.brackRegex)][0]?.groups;
@@ -50,7 +51,13 @@ let fmtMsg = (cmd, name, args) => {
         res = new Promise(resv => setTimeout(() => resv([`reminder: **${matchArgs(args).join(' ')}**`]), len));
       }
       break;
-
+    case '!asm':
+      if (name) {
+        res = ['' + evalAsm(name)];
+      } else {
+        res = [ro.asmHelp];
+      }
+      break;
     default:
       res = ['invalid command, you donkey'];
       break;
