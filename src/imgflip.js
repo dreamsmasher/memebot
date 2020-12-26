@@ -3,7 +3,7 @@ const Imgflip = require('imgflip');
 
 let ACCT_INFO;
 if (process.env.DEV === 'true') {
-    ACCT_INFO = require('./config/config').ACCT_INFO;
+    ACCT_INFO = require('../config/config').ACCT_INFO;
 } else {
     ACCT_INFO = {
         username: process.env.IMGFLIP_USERNAME,
@@ -39,14 +39,13 @@ var schedUpdate = async () => {
 schedUpdate();
 
 let mkMeme = (name, args) => {
-    console.log(name, args);
     let id = names.get(name)[0];
     return new Promise((res, rej) => {
         if (id === undefined) {
             rej("invalid name specified.")
         }
         res(imgflip.meme(id, {
-            captions: args ?? [''],
+            captions: args,
         }));
     })
 };

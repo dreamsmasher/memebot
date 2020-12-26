@@ -2,8 +2,8 @@ const process = require('process');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 let TOKEN, PERMISSIONS;
+const { handleMsg } = require('./src/commands');
 
-console.log(process.env.DEV);
 if (process.env.DEV === 'true') {
   let { token, permissions } = require('./config/config').DISCORD_INFO;
   TOKEN = token;
@@ -13,7 +13,6 @@ if (process.env.DEV === 'true') {
   PERMISSIONS = process.env.DISCORD_PERMS;
 }
 
-const { handleMsg } = require('./commands');
 // const {DISCORD_INFO, ACCT_INFO} = require('./config/config.js');
 // const {token, permissions, prefix} = DISCORD_INFO;
 client.login(TOKEN);
