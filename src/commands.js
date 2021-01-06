@@ -3,7 +3,7 @@ const { mkMeme, names } = require('./imgflip');
 const ro = require('./rodata');
 const { parseRemind } = require('./remindme');
 const { evalAsm } = require('./asm');
-
+// const linus = require('./linus');
 
 let matchCmd = (msg) => [...msg.content.matchAll(ro.brackRegex)][0]?.groups;
 
@@ -23,27 +23,27 @@ let getImg = (name, args) => {
 let fmtMsg = (cmd, name, args) => {
   let res;
   switch (cmd) {
-    case '!meme':
+    case '$meme':
       console.log('meme request: ', name, args);
 
       res = (name ? getImg(name, args ?? '') : ro.NONAME);
       break;
-    case '!preview':
+    case '$preview':
       res = (name ? getImg(name, '') : ro.NONAME); // generate the meme as is
       break;
-    case '!list':
+    case '$list':
       res = [getFmt(0, 50)];
       break;
-    case '!list2':
+    case '$list2':
       res = [getFmt(50, 100)];
       break;
-    case '!help':
+    case '$help':
       res = [ro.helpStr];
       break;
-    case '!lookup':
+    case '$lookup':
       res = (name ? [ro.searchRegex(name)] : ro.NONAME);
       break;
-    case '!remindme':
+    case '$remindme':
       if (!(name || args)) {
         res = [''];
       } else {
@@ -51,12 +51,15 @@ let fmtMsg = (cmd, name, args) => {
         res = new Promise(resv => setTimeout(() => resv([`reminder: **${matchArgs(args).join(' ')}**`]), len));
       }
       break;
-    case '!asm':
+    case '$asm':
       if (name) {
         res = ['' + evalAsm(name)];
       } else {
         res = [ro.asmHelp];
       }
+      break;
+    case '$about':
+      res = [ro.about];
       break;
     default:
       res = ['invalid command, you donkey'];

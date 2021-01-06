@@ -3,6 +3,7 @@ let parseRemind = function (timeStr) {
   let matched = [...timeStr.matchAll(timeRegex)][0]?.groups;
   if (matched === undefined) return;
 
+
   let lens = {
     sec: 1000,
     min: 60000,
@@ -20,6 +21,17 @@ let parseRemind = function (timeStr) {
 
 }
 
+let parseDateTime = function (timeStr) {
+  let dateTime = new Date(timeStr);
+  let currTime = new Date();
+  if (dateTime > currTime) {
+    return dateTime - currTime
+  } else {
+    return undefined;
+  }
+}
+
 module.exports = {
-  parseRemind
+  parseRemind,
+  parseDateTime
 };
