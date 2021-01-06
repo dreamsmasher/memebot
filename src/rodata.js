@@ -1,5 +1,5 @@
 const { names } = require('./imgflip');
-const prefices = 
+const prefices =
         ['meme'
         , 'beep'
         , 'boop'
@@ -18,7 +18,6 @@ const prefices =
         , 'whooops wrong chat'
         , 'unless...?'
         , 'maybemaybemaybe'
-        , 'https://nliu.net'
         , 'uwu'
         , 'owo'
         , '[object Object]'
@@ -26,7 +25,6 @@ const prefices =
         , 'await meme;'
         , 'fast n furious'
         , 'nnneeeeooooom'
-        , 'https://www.github.com/dreamsmasher/memebot'
         ];
 let mkRndPrf = () => prefices[~~(Math.random()) * prefices.length];
 
@@ -37,10 +35,11 @@ Commands:
     \`!list\` - list top 50 memes
     \`!list2\` - list top 50 - 100 memes
     \`!lookup {query} \` - search for a meme template (js regex supported)
-    \`!help\` - print this help message 
+    \`!help\` - print this help message
     \`!remindme {length (secs|mins|hours|days)} <reminder>\` - remind the channel about something
     \`asm {prog}\` - evaluate a simple stack machine program. enter !asm without any arguments to see the syntax.
-    
+     
+    the punctuation is literal!
     preview/list/lookups are ephemeral - they'll delete themselves after a minute
 `
 
@@ -61,7 +60,7 @@ the operations are as follows:
     \`mul\` - mul R0 and R1, storing in R0
     \`div\` - div R0 by R1, storing in R0
 
-example: 
+example:
 \`\`\`!asm {
     mov 3;
     push;
