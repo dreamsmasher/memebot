@@ -38,7 +38,8 @@ Commands:
     \`!help\` - print this help message
     \`!remindme {length (secs|mins|hours|days)} <reminder>\` - remind the channel about something
     \`asm {prog}\` - evaluate a simple stack machine program. enter !asm without any arguments to see the syntax.
-
+     
+    the punctuation is literal!
     preview/list/lookups are ephemeral - they'll delete themselves after a minute
 `
 
