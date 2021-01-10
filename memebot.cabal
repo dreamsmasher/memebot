@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2e40d15dec8435ca3d46d3a5a9bee41f3dd37d5a26438ca33eb2ccc2d4d22a7c
+-- hash: f73f7bdeed882222d06db48cc95e060415b0dec867c7ca4bbd375f871656643c
 
 name:           memebot
 version:        0.1.0.0
@@ -26,8 +26,10 @@ source-repository head
 
 library
   exposed-modules:
-      Commands
-      Effects
+      Memebot.Commands
+      Memebot.Exports
+      Memebot.Imgflip
+      Memebot.Types
   other-modules:
       Paths_memebot
   hs-source-dirs:
@@ -48,7 +50,9 @@ library
     , mtl
     , polysemy
     , product-profunctors
+    , req
     , scotty
+    , split
     , text
     , time
     , transformers
@@ -61,6 +65,7 @@ executable memebot-exe
       Paths_memebot
   hs-source-dirs:
       app
+  default-extensions: DataKinds FlexibleContexts GADTs LambdaCase PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -O2
   build-depends:
       aeson
@@ -77,7 +82,9 @@ executable memebot-exe
     , mtl
     , polysemy
     , product-profunctors
+    , req
     , scotty
+    , split
     , text
     , time
     , transformers
@@ -106,8 +113,10 @@ test-suite saiko-backend-test
     , mtl
     , polysemy
     , product-profunctors
+    , req
     , saiko-backend
     , scotty
+    , split
     , text
     , time
     , transformers

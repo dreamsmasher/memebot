@@ -38,7 +38,8 @@ dependencies:
 - product-profunctors
 - calamity
 - polysemy
-
+- req
+- split
 
 library:
   source-dirs: src
@@ -66,6 +67,18 @@ executables:
     - -O2
     dependencies:
     - memebot
+    default-extensions:
+      - DataKinds
+      - FlexibleContexts
+      - GADTs
+      - LambdaCase
+      - PolyKinds
+      - RankNTypes
+      - ScopedTypeVariables
+      - TypeApplications
+      - TypeOperators
+      - TypeFamilies
+
 
 tests:
   saiko-backend-test:

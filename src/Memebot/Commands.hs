@@ -1,4 +1,4 @@
-module Commands where
+module Memebot.Commands where
 
 import Data.Attoparsec.ByteString
 
