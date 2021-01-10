@@ -1,0 +1,115 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 2e40d15dec8435ca3d46d3a5a9bee41f3dd37d5a26438ca33eb2ccc2d4d22a7c
+
+name:           memebot
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/dreamsmasher/saiko-backend#readme>
+homepage:       https://github.com/dreamsmasher/saiko-backend#readme
+bug-reports:    https://github.com/dreamsmasher/saiko-backend/issues
+author:         Norman Liu
+maintainer:     normanwuweiliu@gmail.com
+copyright:      Copright 2020 Norman Liu
+license:        BSD3
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/dreamsmasher/saiko-backend
+
+library
+  exposed-modules:
+      Commands
+      Effects
+  other-modules:
+      Paths_memebot
+  hs-source-dirs:
+      src
+  default-extensions: DataKinds FlexibleContexts GADTs LambdaCase PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
+  ghc-options: -O2 -flate-specialise -fspecialise-aggressively
+  build-depends:
+      aeson
+    , attoparsec
+    , base >=4.7 && <5
+    , bytestring
+    , calamity
+    , containers
+    , contravariant
+    , contravariant-extras
+    , http-types
+    , lens
+    , mtl
+    , polysemy
+    , product-profunctors
+    , scotty
+    , text
+    , time
+    , transformers
+    , warp
+  default-language: Haskell2010
+
+executable memebot-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_memebot
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -O2
+  build-depends:
+      aeson
+    , attoparsec
+    , base >=4.7 && <5
+    , bytestring
+    , calamity
+    , containers
+    , contravariant
+    , contravariant-extras
+    , http-types
+    , lens
+    , memebot
+    , mtl
+    , polysemy
+    , product-profunctors
+    , scotty
+    , text
+    , time
+    , transformers
+    , warp
+  default-language: Haskell2010
+
+test-suite saiko-backend-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_memebot
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , attoparsec
+    , base >=4.7 && <5
+    , bytestring
+    , calamity
+    , containers
+    , contravariant
+    , contravariant-extras
+    , http-types
+    , lens
+    , mtl
+    , polysemy
+    , product-profunctors
+    , saiko-backend
+    , scotty
+    , text
+    , time
+    , transformers
+    , warp
+  default-language: Haskell2010

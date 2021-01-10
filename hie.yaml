@@ -1,0 +1,13 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "memebot:lib"
+
+    - path: "./app/Main.hs"
+      component: "memebot:exe:memebot-exe"
+
+    - path: "./app/Paths_memebot.hs"
+      component: "memebot:exe:memebot-exe"
+
+    - path: "./test"
+      component: "memebot:test:saiko-backend-test"
