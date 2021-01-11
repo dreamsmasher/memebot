@@ -6,7 +6,7 @@ module Memebot.Imgflip.Imgflip
 , getMemeId
 , postMeme
 , mkMeme
-
+, buildMeme
 )
 where
 
@@ -55,6 +55,9 @@ getMeme n = asks (M.lookup n . view memes)
 
 getMemeId :: Name -> ImgEnv (Maybe ImgId)
 getMemeId = getMeme >=> fmap (ImgId . view memeId) |> pure
+
+buildMeme :: Name -> [Text] -> ImgEnv (Maybe Url')
+buildMeme n t = getMemeId n >>= maybe (pure Nothing) (`mkMeme` t)
 
 request :: MonadIO m => Req a -> m a
 request = runReq defaultHttpConfig 

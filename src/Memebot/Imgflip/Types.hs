@@ -30,16 +30,15 @@ import Data.HashMap.Strict (HashMap)
 import qualified Data.HashMap.Strict as M
 import Data.String
 import Data.Text.Encoding (decodeUtf8)
+import Discord
 
-newtype Url' = Url' Text deriving (Show, Eq)
+newtype Url' = Url' {getUrl :: Text} deriving (Show, Eq)
 newtype ImgId = ImgId Text deriving (Show, Eq)
 newtype Username = UN Text deriving (Show, Eq)
 newtype Password = PW Text deriving (Show, Eq)
 newtype Token = TK Text deriving (Show, Eq)
-
                
 type Name = Text
-
 
 type ImgEnv = ReaderT Env IO
 
@@ -52,10 +51,11 @@ data MemeData = MD {
     _boxCount :: Int
 } deriving (Eq, Show, Generic)
 
-data Env = Env { _memes :: HashMap Name MemeData
-               , _ifAcc :: (Username, Password)
-               , _token :: Token
-               } deriving (Eq, Show)
+data Env = Env { _memes  :: HashMap Name MemeData
+               , _ifAcc  :: (Username, Password)
+               , _dsOpts :: RunDiscordOpts
+               , _dsHndl :: Maybe DiscordHandle
+               } 
 
 makeLenses ''Env            
 

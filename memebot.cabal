@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a0467b48e346252bc9afa54a9606ab36cafddf2f4c42bbd68722114b794b6565
+-- hash: 8ff809e5c6abce29f3af2ed360a3ebdc2721238aaaef622cbb3b7615b288f0e2
 
 name:           memebot
 version:        0.1.0.0
@@ -27,8 +27,9 @@ source-repository head
 library
   exposed-modules:
       Memebot.Bot.ArgParser
+      Memebot.Bot.Calamity.Commands
+      Memebot.Bot.Calamity.Types
       Memebot.Bot.Commands
-      Memebot.Bot.Types
       Memebot.Exports
       Memebot.Imgflip.Imgflip
       Memebot.Imgflip.Types
@@ -48,6 +49,8 @@ library
     , containers
     , contravariant
     , contravariant-extras
+    , data-default
+    , discord-haskell
     , http-api-data
     , http-client
     , http-types
@@ -83,6 +86,8 @@ executable memebot-exe
     , containers
     , contravariant
     , contravariant-extras
+    , data-default
+    , discord-haskell
     , http-api-data
     , http-client
     , http-types
@@ -119,6 +124,8 @@ test-suite saiko-backend-test
     , containers
     , contravariant
     , contravariant-extras
+    , data-default
+    , discord-haskell
     , http-api-data
     , http-client
     , http-types

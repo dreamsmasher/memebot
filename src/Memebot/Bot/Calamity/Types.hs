@@ -1,5 +1,5 @@
 {-# LANGUAGE TemplateHaskell #-}
-module Memebot.Bot.Types where
+module Memebot.Bot.Calamity.Types where
 
 -- import Calamity
 import Polysemy

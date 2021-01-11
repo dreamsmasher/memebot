@@ -1,25 +1,47 @@
 module Memebot.Bot.Commands where
 
-import Data.ByteString (ByteString)
-import qualified Data.ByteString as B
+import Memebot.Exports
+import Memebot.Imgflip.Types
+import Memebot.Imgflip.Imgflip
+import Memebot.Bot.ArgParser
+import Discord
+import Discord.Types
+import Discord.Requests as R
+import Data.Maybe
 import Data.Text (Text)
 import qualified Data.Text as T
-import Calamity.Commands.Dsl
-import Calamity.Commands.Parser
-import Calamity.Commands.Command
-import Calamity.Commands.CommandUtils
-import Calamity
-import Polysemy (Sem)
-import qualified Polysemy as P
-import Memebot.Exports
-import Memebot.Bot.Types
-import Memebot.Imgflip.Types
-import Memebot.Bot.ArgParser (parseArgs)
+
+eventHandler :: Env -> DiscordHandle -> Event -> DiscordHandler ()
+eventHandler env dh ev = case ev of
+   MessageCreate m -> unless (fromBot m) $ do
+       res <- liftIO (runReaderT (handleMsg m) env')
+       case res of Nothing -> pure ()
+                   Just url -> do
+                       restCall (CreateMessage (messageChannel m) (getUrl url))
+                       pure ()
+   _ -> pure ()
+   
+   where env' = env & dsHndl ?~ dh
     
-newtype MemeParser r a = MP {runMemeParse :: Text -> Either String [TextBox]}
+-- so we don't throw an error if there's nothing following the cmd 
+safeTail :: Text -> Text
+safeTail = \case "" -> ""
+                 xs -> T.tail xs 
 
-memeCmd :: Member (Embed IO) r => Sem (Memes ': r) a -> Sem r a
-memeCmd = command @'[Named "args" (KleeneStarConcat Text)] "meme" $ \ctx t -> do
-        pure undefined
+tryMeme :: Text -> ImgEnv (Maybe Url')
+tryMeme = parseMeme |> maybe (pure Nothing) ((map text <$>) |> uncurry buildMeme)
 
-    where helpStr = "Takes in a meme name, and text fields. Commands are given in the format {meme name} {expr1; expr2;...}"
+fromBot :: Message -> Bool
+fromBot = messageAuthor |> userIsBot
+
+handleMsg :: Message -> ImgEnv (Maybe Url')
+handleMsg m = do
+    -- TODO separate this into another function to trampoline back down into DiscordHandler 
+    case (getArg . messageText) m of
+        Nothing -> pure Nothing
+        Just arg -> do
+            let body = m & (messageText |> T.dropWhile (/= ' ') |> safeTail)
+            ds <- fromJust <$> asks (view dsHndl)
+            case arg of
+                "$meme" -> tryMeme body 
+                    

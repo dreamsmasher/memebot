@@ -42,8 +42,10 @@ dependencies:
 - split
 - unordered-containers
 - lens-aeson
+- data-default
 - http-client
 - http-api-data
+- discord-haskell
 
 library:
   source-dirs: src
