@@ -40,6 +40,10 @@ dependencies:
 - polysemy
 - req
 - split
+- unordered-containers
+- lens-aeson
+- http-client
+- http-api-data
 
 library:
   source-dirs: src

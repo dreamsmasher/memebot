@@ -2,22 +2,25 @@ module Memebot.Exports
 ( module Control.Arrow 
 , module Control.Monad
 , module Control.Applicative
-, module Control.Monad.Reader.Class
+, module Control.Monad.Trans.Reader
 , module Control.Monad.IO.Class
+, module Control.Lens
 , camelCase
 , unCamel
 , (?)
 , cond
 , (|>)
+
 ) where 
     
 import Data.List.Split
 import Control.Arrow
 import Data.Char
 import Control.Applicative
-import Control.Monad.Reader.Class
+import Control.Monad.Trans.Reader
 import Control.Monad.IO.Class
 import Control.Monad
+import Control.Lens hiding ((|>))
 import Control.Category (Category)
 
 camelCase :: [Char] -> [Char]

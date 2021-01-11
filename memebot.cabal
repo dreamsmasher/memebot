@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f73f7bdeed882222d06db48cc95e060415b0dec867c7ca4bbd375f871656643c
+-- hash: 6882c0a8f27052912889e16831e4c90925f4683ded51e7bc671df486309253a3
 
 name:           memebot
 version:        0.1.0.0
@@ -45,8 +45,11 @@ library
     , containers
     , contravariant
     , contravariant-extras
+    , http-api-data
+    , http-client
     , http-types
     , lens
+    , lens-aeson
     , mtl
     , polysemy
     , product-profunctors
@@ -56,6 +59,7 @@ library
     , text
     , time
     , transformers
+    , unordered-containers
     , warp
   default-language: Haskell2010
 
@@ -76,8 +80,11 @@ executable memebot-exe
     , containers
     , contravariant
     , contravariant-extras
+    , http-api-data
+    , http-client
     , http-types
     , lens
+    , lens-aeson
     , memebot
     , mtl
     , polysemy
@@ -88,6 +95,7 @@ executable memebot-exe
     , text
     , time
     , transformers
+    , unordered-containers
     , warp
   default-language: Haskell2010
 
@@ -108,8 +116,11 @@ test-suite saiko-backend-test
     , containers
     , contravariant
     , contravariant-extras
+    , http-api-data
+    , http-client
     , http-types
     , lens
+    , lens-aeson
     , mtl
     , polysemy
     , product-profunctors
@@ -120,5 +131,6 @@ test-suite saiko-backend-test
     , text
     , time
     , transformers
+    , unordered-containers
     , warp
   default-language: Haskell2010
