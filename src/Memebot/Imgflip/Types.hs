@@ -53,7 +53,7 @@ data MemeData = MD {
 
 data Env = Env { _memes  :: HashMap Name MemeData
                , _ifAcc  :: (Username, Password)
-               , _dsOpts :: RunDiscordOpts
+            --    , _dsOpts :: RunDiscordOpts
                , _dsHndl :: Maybe DiscordHandle
                } 
 

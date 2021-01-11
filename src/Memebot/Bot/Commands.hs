@@ -11,9 +11,11 @@ import Data.Maybe
 import Data.Text (Text)
 import qualified Data.Text as T
 
-eventHandler :: Env -> DiscordHandle -> Event -> DiscordHandler ()
-eventHandler env dh ev = case ev of
+eventHandler :: Env -> Event -> DiscordHandler ()
+eventHandler env ev = case ev of
    MessageCreate m -> unless (fromBot m) $ do
+       dh <- ask
+       let env' = env & dsHndl ?~ dh
        res <- liftIO (runReaderT (handleMsg m) env')
        case res of Nothing -> pure ()
                    Just url -> do
@@ -21,7 +23,7 @@ eventHandler env dh ev = case ev of
                        pure ()
    _ -> pure ()
    
-   where env' = env & dsHndl ?~ dh
+--    where env' = env & dsHndl ?~ dh
     
 -- so we don't throw an error if there's nothing following the cmd 
 safeTail :: Text -> Text

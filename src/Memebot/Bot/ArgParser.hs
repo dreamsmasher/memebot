@@ -47,7 +47,7 @@ getArg s = if S.member pfx commands then Just pfx else Nothing
 -- putting this in a separate module to avoid namespace conflict
 
 inBraces :: Parser a -> Parser a 
-inBraces p = char '{' >> p >>= \s -> char '}' >> pure s
+inBraces p = char '{' >> p <* char '}' 
 
 parseArgs :: Parser [TextBox]
 parseArgs = do 
