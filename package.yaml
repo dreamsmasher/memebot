@@ -53,6 +53,8 @@ library:
     - FlexibleContexts
     - GADTs
     - LambdaCase
+    - TupleSections
+    - OverloadedStrings
     - PolyKinds
     - RankNTypes
     - ScopedTypeVariables
@@ -76,6 +78,8 @@ executables:
       - FlexibleContexts
       - GADTs
       - LambdaCase
+      - TupleSections
+      - OverloadedStrings
       - PolyKinds
       - RankNTypes
       - ScopedTypeVariables

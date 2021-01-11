@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 6882c0a8f27052912889e16831e4c90925f4683ded51e7bc671df486309253a3
+-- hash: a0467b48e346252bc9afa54a9606ab36cafddf2f4c42bbd68722114b794b6565
 
 name:           memebot
 version:        0.1.0.0
@@ -26,15 +26,18 @@ source-repository head
 
 library
   exposed-modules:
-      Memebot.Commands
+      Memebot.Bot.ArgParser
+      Memebot.Bot.Commands
+      Memebot.Bot.Types
       Memebot.Exports
-      Memebot.Imgflip
+      Memebot.Imgflip.Imgflip
+      Memebot.Imgflip.Types
       Memebot.Types
   other-modules:
       Paths_memebot
   hs-source-dirs:
       src
-  default-extensions: DataKinds FlexibleContexts GADTs LambdaCase PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
+  default-extensions: DataKinds FlexibleContexts GADTs LambdaCase TupleSections OverloadedStrings PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
   ghc-options: -O2 -flate-specialise -fspecialise-aggressively
   build-depends:
       aeson
@@ -69,7 +72,7 @@ executable memebot-exe
       Paths_memebot
   hs-source-dirs:
       app
-  default-extensions: DataKinds FlexibleContexts GADTs LambdaCase PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
+  default-extensions: DataKinds FlexibleContexts GADTs LambdaCase TupleSections OverloadedStrings PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -O2
   build-depends:
       aeson

@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Memebot.Imgflip 
+module Memebot.Imgflip.Imgflip
 ( populateMemes
 , getMemes
 , getMeme
@@ -18,6 +18,7 @@ import Data.HashMap.Strict (HashMap)
 import qualified Data.HashMap.Strict as M
 
 import Memebot.Exports
+import Memebot.Imgflip.Types
 import Memebot.Types
 
 import Data.Text (Text)
@@ -38,19 +39,12 @@ postMeme c = req POST url (ReqBodyUrlEnc (toQuery c)) jsonResponse mempty
     where url = mkEndpt "caption_image"
 
 -- buildMemeReq :: ImgId -> [Text] ->    
-mkMeme :: Name -> [Text] -> ImgEnv (Maybe Url')
-mkMeme name body = do
-    imgId <- getMemeId name
-    case imgId of
-        Nothing -> pure Nothing
-        Just i -> do
-            body <- imgCap i body
-            request $ do
-                val <- responseBody <$> postMeme body
-                liftIO $ print val
-                let res = fromCapResp val
-                liftIO $ print res
-                pure $ res <&> (Url' . urlR)
+mkMeme :: ImgId -> [Text] -> ImgEnv (Maybe Url')
+mkMeme imgId body = do
+    body <- imgCap imgId body
+    request $ do
+        val <- responseBody <$> postMeme body
+        pure $ fromCapResp val <&> (Url' . urlR)
             
 populateMemes :: IO (HashMap Name MemeData)
 populateMemes = request 

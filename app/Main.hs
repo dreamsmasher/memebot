@@ -6,8 +6,8 @@ import System.Environment
 import Calamity
 import Data.Aeson
 import qualified Polysemy as P
-import Memebot.Types
-import Memebot.Imgflip
+import Memebot.Imgflip.Types
+import Memebot.Imgflip.Imgflip
 import Memebot.Exports
 
 mkEnv :: IO Env
@@ -21,7 +21,7 @@ main = do
     isDev <- lookupEnv "DEV"
     env <- mkEnv
     flip runReaderT env $ do
-        res <- mkMeme "doge" ["hello", "test 1", "test2"]
+        res <- mkMeme "doge" ["henlo", "from", "haskell", "bork", "bork"]
         liftIO $ print res
     pure ()
         
