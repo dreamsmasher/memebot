@@ -1,6 +1,6 @@
 const { names } = require('./imgflip');
 const prefices =
-    ['meme'
+        [ 'meme'
         , 'beep'
         , 'boop'
         , 'bloop'
@@ -25,7 +25,7 @@ const prefices =
         , 'await meme;'
         , 'fast n furious'
         , 'nnneeeeooooom'
-    ];
+        ];
 let mkRndPrf = () => prefices[~~(Math.random()) * prefices.length];
 
 const helpStr = `
@@ -95,12 +95,12 @@ let searchRegex = (query) => {
 }
 
 const deletables = new Map(
-    [['$preview', 10000]
+        [ ['$preview', 10000]
         , ['$lookup', 60000]
         , ['$list', 60000]
         , ['$list2', 60000]
         , ['$about', 60000]
-    ]
+        ]
 );
 
 module.exports = {
