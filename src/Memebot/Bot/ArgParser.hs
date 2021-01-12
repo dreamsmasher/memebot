@@ -2,6 +2,7 @@ module Memebot.Bot.ArgParser
 ( parseArgs
 , parseName
 , parseMessage
+, parse
 )
 where
 

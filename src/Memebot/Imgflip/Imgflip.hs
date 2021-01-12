@@ -7,6 +7,7 @@ module Memebot.Imgflip.Imgflip
 , postMeme
 , mkMeme
 , buildMeme
+, showMemes
 )
 where
 
@@ -62,3 +63,12 @@ buildMeme n t = getMemeId n >>= maybe (pure Nothing) (`mkMeme` t)
 request :: MonadIO m => Req a -> m a
 request = runReq defaultHttpConfig 
     
+listMemes :: ImgEnv [(Name, MemeData)] 
+listMemes = asks (M.toList . view memes)
+-- this will be unordered, maybe refactor this to a regular Map?
+
+showMemes :: Bool -> ImgEnv (Maybe Text)
+showMemes b = listMemes <&> (f |> map format |> T.intercalate "\n" 
+            |> ("valid templates: *[text box count]*\n" <>) |> Just)
+    where format (n, c) = "**" <> n <> " [" <> (T.pack . show) c <> "]"
+          f = (if b then snd else fst) . splitAt 50

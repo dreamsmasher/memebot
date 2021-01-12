@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 332fefa2499d8f8ed8cd3ba03c59d58cdd3bbca86f6273129c70d5dc6261955a
+-- hash: 051ba81241cd429606f3e3d3354051cd1e645c6be5f37ce8d38183b643465632
 
 name:           memebot
 version:        0.1.0.0
@@ -43,6 +43,7 @@ library
   ghc-options: -O2 -flate-specialise -fspecialise-aggressively
   build-depends:
       aeson
+    , async
     , attoparsec
     , base >=4.7 && <5
     , bytestring
@@ -52,6 +53,7 @@ library
     , contravariant-extras
     , data-default
     , discord-haskell
+    , extra
     , http-api-data
     , http-client
     , http-types
@@ -80,6 +82,7 @@ executable memebot-exe
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -O2
   build-depends:
       aeson
+    , async
     , attoparsec
     , base >=4.7 && <5
     , bytestring
@@ -89,6 +92,7 @@ executable memebot-exe
     , contravariant-extras
     , data-default
     , discord-haskell
+    , extra
     , http-api-data
     , http-client
     , http-types
@@ -118,6 +122,7 @@ test-suite saiko-backend-test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
+    , async
     , attoparsec
     , base >=4.7 && <5
     , bytestring
@@ -127,6 +132,7 @@ test-suite saiko-backend-test
     , contravariant-extras
     , data-default
     , discord-haskell
+    , extra
     , http-api-data
     , http-client
     , http-types

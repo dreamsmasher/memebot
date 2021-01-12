@@ -46,6 +46,8 @@ dependencies:
 - http-client
 - http-api-data
 - discord-haskell
+- async
+- extra
 
 library:
   source-dirs: src
