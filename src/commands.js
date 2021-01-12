@@ -3,6 +3,7 @@ const { mkMeme, names } = require('./imgflip');
 const ro = require('./rodata');
 const { parseRemind } = require('./remindme');
 const { evalAsm } = require('./asm');
+const { spongebobify } = require('./textedit.js')
 // const linus = require('./linus');
 
 let matchCmd = (msg) => [...msg.content.matchAll(ro.brackRegex)][0]?.groups;
@@ -61,6 +62,9 @@ let fmtMsg = (cmd, name, args) => {
     case '$about':
       res = [ro.about];
       break;
+    case '$spongebob':
+      res = (name ? [spongebobify(name)] : ['Enter text you goofy goober']);
+      break;
     default:
       res = ['invalid command, you donkey'];
       break;
@@ -83,11 +87,11 @@ const handleMsg = (msg) => {
   }
 
   let del = msg => {
-    let t = ro.deletables.get(cmd);  
+    let t = ro.deletables.get(cmd);
     if (t === undefined) {
       return null;
     }
-    return msg.delete({timeout: t});
+    return msg.delete({ timeout: t });
   };
 
   fmtMsg(cmd, name, args, msg)
