@@ -29,6 +29,3 @@ main :: IO ()
 main = do
     isDev <- lookupEnv "DEV"
     mkEnv >>= runDiscord >> pure ()   
-    -- [_token, permissions] <- mapM getEnv ["DISCORD_TOKEN", "DISCORD_PERMS"]
-    -- let token = BotToken (T.pack _token)
-    -- putStrLn "hi"

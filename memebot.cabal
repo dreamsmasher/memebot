@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8ff809e5c6abce29f3af2ed360a3ebdc2721238aaaef622cbb3b7615b288f0e2
+-- hash: 332fefa2499d8f8ed8cd3ba03c59d58cdd3bbca86f6273129c70d5dc6261955a
 
 name:           memebot
 version:        0.1.0.0
@@ -30,6 +30,7 @@ library
       Memebot.Bot.Calamity.Commands
       Memebot.Bot.Calamity.Types
       Memebot.Bot.Commands
+      Memebot.Bot.Types
       Memebot.Exports
       Memebot.Imgflip.Imgflip
       Memebot.Imgflip.Types
